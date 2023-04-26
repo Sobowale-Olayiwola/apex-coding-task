@@ -1,1 +1,1 @@
-# apex-coding-task
+# SIMPLE DICE PROJECT
