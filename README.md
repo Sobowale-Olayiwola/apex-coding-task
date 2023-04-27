@@ -29,6 +29,7 @@ This project is focused on building a simple dice game REST API
  - make test
 
 ## Endpoints
+A postman collection export is in the root of the application folder to be imported to easily interact with the endpoints
 - POST /users
     - To create a new user
 - POST /users/start-game
