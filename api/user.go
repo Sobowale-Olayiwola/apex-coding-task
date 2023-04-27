@@ -35,7 +35,7 @@ func (server *Server) createUser(ctx *gin.Context) {
 		return
 	}
 
-	ctx.JSON(http.StatusOK, user)
+	ctx.JSON(http.StatusOK, gin.H{"success": true, "data": user})
 }
 
 type startUserGameRequest struct {
@@ -62,7 +62,7 @@ func (server Server) startUserGame(ctx *gin.Context) {
 			return
 		}
 	}
-	ctx.JSON(http.StatusOK, rsp)
+	ctx.JSON(http.StatusOK, gin.H{"success": true, "data": rsp})
 }
 
 type roleDiceRequest struct {
@@ -95,7 +95,7 @@ func (server *Server) rollDice(ctx *gin.Context) {
 				return
 			}
 		}
-		ctx.JSON(http.StatusOK, "OK")
+		ctx.JSON(http.StatusOK, gin.H{"success": true})
 		return
 	case 1:
 		_, err := server.store.SecondDiceThrow(ctx, user)
@@ -103,7 +103,7 @@ func (server *Server) rollDice(ctx *gin.Context) {
 			ctx.JSON(http.StatusInternalServerError, errorResponse(err))
 			return
 		}
-		ctx.JSON(http.StatusOK, "OK")
+		ctx.JSON(http.StatusOK, gin.H{"success": true})
 		return
 	case 2:
 		_, err := server.store.StartNewDiceThrow(ctx, user)
@@ -117,7 +117,7 @@ func (server *Server) rollDice(ctx *gin.Context) {
 				return
 			}
 		}
-		ctx.JSON(http.StatusOK, "OK")
+		ctx.JSON(http.StatusOK, gin.H{"success": true})
 		return
 	}
 }
@@ -141,7 +141,7 @@ func (server *Server) endSession(ctx *gin.Context) {
 		ctx.JSON(http.StatusInternalServerError, errorResponse(err))
 		return
 	}
-	ctx.JSON(http.StatusOK, "OK")
+	ctx.JSON(http.StatusOK, gin.H{"success": true})
 	return
 }
 
@@ -187,5 +187,5 @@ func (server *Server) getTransactionLogs(ctx *gin.Context) {
 		ctx.JSON(http.StatusInternalServerError, errorResponse(err))
 		return
 	}
-	ctx.JSON(http.StatusOK, txnLogs)
+	ctx.JSON(http.StatusOK, gin.H{"success": true, "data": txnLogs})
 }

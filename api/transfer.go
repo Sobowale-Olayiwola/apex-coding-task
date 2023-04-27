@@ -33,12 +33,12 @@ func (server *Server) fundWallet(ctx *gin.Context) {
 		Amount:       util.WALLET_FUND_AMOUNT,
 	}
 
-	result, err := server.store.TransferTx(ctx, arg)
+	_, err := server.store.TransferTx(ctx, arg)
 	if err != nil {
 		ctx.JSON(http.StatusInternalServerError, errorResponse(err))
 		return
 	}
-	ctx.JSON(http.StatusOK, result)
+	ctx.JSON(http.StatusOK, gin.H{"success": true})
 }
 
 func (server *Server) validAccount(ctx *gin.Context, walletID int64, asset string) bool {

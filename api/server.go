@@ -41,7 +41,7 @@ func (server *Server) setupRouter() {
 	router.GET("/users/transaction-logs/:username", server.getTransactionLogs)
 
 	router.POST("/transfers/fund-wallet", server.fundWallet)
-	router.GET("wallets/:username", server.getWalletBalance)
+	router.GET("wallets/:username/balance", server.getWalletBalance)
 
 	server.router = router
 }
@@ -51,5 +51,5 @@ func (server *Server) Start(address string) error {
 }
 
 func errorResponse(err error) gin.H {
-	return gin.H{"error": err.Error()}
+	return gin.H{"success": false, "error": err.Error()}
 }

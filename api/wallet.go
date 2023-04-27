@@ -29,7 +29,10 @@ func (server *Server) getWalletBalance(ctx *gin.Context) {
 		return
 	}
 	ctx.JSON(http.StatusOK, gin.H{
-		"balance":      fmt.Sprintf("%d", wallet.Balance),
-		"wallet_asset": wallet.Asset,
+		"success": true,
+		"data": gin.H{
+			"balance":      fmt.Sprintf("%d", wallet.Balance),
+			"wallet_asset": wallet.Asset,
+		},
 	})
 }
