@@ -1,0 +1,708 @@
+{
+	"info": {
+		"_postman_id": "73605c88-796f-403d-8768-b6bb6735298b",
+		"name": "OLAYIWOLA_SOBOWALE_APEX_SIMPLE_DICE",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "15664285"
+	},
+	"item": [
+		{
+			"name": "create user",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\": \"apexuser\",\n    \"asset\": \"sats\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/users",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "successfully create user",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"kkkkk\",\n    \"asset\": \"sats\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/users",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 27 Apr 2023 07:02:15 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "201"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"data\": {\n        \"user\": {\n            \"username\": \"kkkkk\",\n            \"created_at\": \"2023-04-27T07:02:15.892228Z\"\n        },\n        \"wallet\": {\n            \"id\": 65,\n            \"owner\": \"kkkkk\",\n            \"balance\": 0,\n            \"asset\": \"sats\",\n            \"created_at\": \"2023-04-27T07:02:15.892228Z\"\n        }\n    },\n    \"success\": true\n}"
+				}
+			]
+		},
+		{
+			"name": "start game",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\": \"apexuser\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/users/start-game",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users",
+						"start-game"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "new user cannot play start game because of 0 balance",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"apexuser\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/users/start-game",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users",
+								"start-game"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 27 Apr 2023 06:31:21 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "81"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"error\": \"user has insufficient amount. kindly fund your wallet\",\n    \"success\": false\n}"
+				},
+				{
+					"name": "successfully start game",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"apexuser\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/users/start-game",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users",
+								"start-game"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 27 Apr 2023 06:38:10 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "123"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"data\": {\n        \"balance\": \"135\",\n        \"session_id\": 5,\n        \"attempt_id\": \"0ed7e04b-bc96-468d-a652-ca0cfb05fbdd\",\n        \"asset\": \"sats\"\n    },\n    \"success\": true\n}"
+				}
+			]
+		},
+		{
+			"name": "fund wallet",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"to_wallet_id\": 62,\n    \"asset\": \"sats\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/transfers/fund-wallet",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"transfers",
+						"fund-wallet"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "successfully fund wallet",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"to_wallet_id\": 62,\n    \"asset\": \"sats\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/transfers/fund-wallet",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"transfers",
+								"fund-wallet"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 27 Apr 2023 06:37:27 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "16"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"success\": true\n}"
+				},
+				{
+					"name": "fund wallet fails because it is greater than minimum balance",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"to_wallet_id\": 62,\n    \"asset\": \"sats\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/transfers/fund-wallet",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"transfers",
+								"fund-wallet"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 27 Apr 2023 06:40:30 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "95"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"error\": \"wallet is greater than the minimum balance of 35 required to top up\",\n    \"success\": false\n}"
+				}
+			]
+		},
+		{
+			"name": "get wallet balance",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/wallets/apexuser/balance",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"wallets",
+						"apexuser",
+						"balance"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "successfully get wallet balance",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/wallets/apexuser/balance",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"wallets",
+								"apexuser",
+								"balance"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 27 Apr 2023 06:39:51 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "63"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"data\": {\n        \"balance\": \"135\",\n        \"wallet_asset\": \"sats\"\n    },\n    \"success\": true\n}"
+				}
+			]
+		},
+		{
+			"name": "check user session",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": [
+				{
+					"name": "successfully check user session",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/users/5/check-session",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users",
+								"5",
+								"check-session"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 27 Apr 2023 06:43:03 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "15"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"active\": true\n}"
+				}
+			]
+		},
+		{
+			"name": "roll dice",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\": \"apexuser\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/users/roll-dice",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users",
+						"roll-dice"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "successfully roll dice",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"apexuser\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/users/roll-dice",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users",
+								"roll-dice"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 27 Apr 2023 06:45:42 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "16"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"success\": true\n}"
+				},
+				{
+					"name": "fails to roll dice when there is no active session",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"apexuser\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/users/roll-dice",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users",
+								"roll-dice"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 27 Apr 2023 06:54:16 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "51"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"error\": \"kindly start a new game\",\n    \"success\": false\n}"
+				}
+			]
+		},
+		{
+			"name": "get transaction logs",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/users/transaction-logs/apexuser",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users",
+						"transaction-logs",
+						"apexuser"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "successfully get transaction logs",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/users/transaction-logs/apexuser",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users",
+								"transaction-logs",
+								"apexuser"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 27 Apr 2023 06:51:17 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "833"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"data\": [\n        {\n            \"username\": \"apexuser\",\n            \"amount\": 155,\n            \"asset\": \"sats\",\n            \"transaction_date\": \"2023-04-27T06:37:27.51856Z\",\n            \"id\": 6,\n            \"transaction_type\": \"credit\"\n        },\n        {\n            \"username\": \"apexuser\",\n            \"amount\": -20,\n            \"asset\": \"sats\",\n            \"transaction_date\": \"2023-04-27T06:38:10.51428Z\",\n            \"id\": 7,\n            \"transaction_type\": \"debit\"\n        },\n        {\n            \"username\": \"apexuser\",\n            \"amount\": -5,\n            \"asset\": \"sats\",\n            \"transaction_date\": \"2023-04-27T06:45:42.276999Z\",\n            \"id\": 9,\n            \"transaction_type\": \"debit\"\n        },\n        {\n            \"username\": \"apexuser\",\n            \"amount\": -5,\n            \"asset\": \"sats\",\n            \"transaction_date\": \"2023-04-27T06:46:24.163585Z\",\n            \"id\": 11,\n            \"transaction_type\": \"debit\"\n        },\n        {\n            \"username\": \"apexuser\",\n            \"amount\": -5,\n            \"asset\": \"sats\",\n            \"transaction_date\": \"2023-04-27T06:46:29.817329Z\",\n            \"id\": 13,\n            \"transaction_type\": \"debit\"\n        },\n        {\n            \"username\": \"apexuser\",\n            \"amount\": -5,\n            \"asset\": \"sats\",\n            \"transaction_date\": \"2023-04-27T06:50:07.025645Z\",\n            \"id\": 15,\n            \"transaction_type\": \"debit\"\n        }\n    ],\n    \"success\": true\n}"
+				}
+			]
+		},
+		{
+			"name": "end game session",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/users/5/end-game",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users",
+						"5",
+						"end-game"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "successfully end game session",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/users/5/end-game",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users",
+								"5",
+								"end-game"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 27 Apr 2023 06:53:07 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "16"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"success\": true\n}"
+				},
+				{
+					"name": "fails to end game session",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/users/5/end-game",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users",
+								"5",
+								"end-game"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 27 Apr 2023 06:53:49 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "53"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"error\": \"no active game in session\",\n    \"success\": false\n}"
+				}
+			]
+		}
+	]
+}

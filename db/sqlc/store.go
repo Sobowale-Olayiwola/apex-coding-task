@@ -128,9 +128,8 @@ func addMoney(ctx context.Context, q *Queries, walletID1, amount1, walletID2, am
 }
 
 type CreateUserResult struct {
-	User    User   `json:"user"`
-	Balance string `json:"balance"`
-	Asset   string `json:"asset"`
+	User   User   `json:"user"`
+	Wallet Wallet `json:"wallet"`
 }
 
 func (store *SQLStore) CreateUserTx(ctx context.Context, username, asset string) (CreateUserResult, error) {
@@ -149,8 +148,7 @@ func (store *SQLStore) CreateUserTx(ctx context.Context, username, asset string)
 		if err != nil {
 			return err
 		}
-		result.Balance = fmt.Sprintf("%d", wallet.Balance)
-		result.Asset = wallet.Asset
+		result.Wallet = wallet
 		return nil
 	})
 
@@ -219,7 +217,7 @@ func (store *SQLStore) StartGame(ctx context.Context, username string) (StartGam
 				return err
 			}
 			result.Asset = txnRes.ToWallet.Asset
-			result.Balance = fmt.Sprintf("%d", txnRes.ToWallet.Balance)
+			result.Balance = fmt.Sprintf("%d", txnRes.FromWallet.Balance)
 			result.SessionID = newUserSession.ID
 			result.CurrentAttemptID = attemptID
 

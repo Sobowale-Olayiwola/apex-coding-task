@@ -9,7 +9,7 @@ import (
 	"github.com/go-playground/validator/v10"
 )
 
-// Server serves HTTP requests for our banking service
+// Server serves HTTP requests for our wallet service
 type Server struct {
 	config util.Config
 	store  db.Store
