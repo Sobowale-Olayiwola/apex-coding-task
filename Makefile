@@ -19,4 +19,10 @@ dropdb:
 server:
 	go run main.go
 
+mock: 
+	mockgen -package mockdb -destination db/mock/store.go simpledice/db/sqlc Store
+
+test: 
+	go test -v -cover ./...
+
 .PHONY: postgres createdb dropdb migrateup migratedown mock 
